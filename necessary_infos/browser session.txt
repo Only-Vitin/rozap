@@ -1,0 +1,7 @@
+by: OnlyVitin
+
+# Configuring Firefox browser session
+firefox = webbrowser.Mozilla(r"C:\Program Files\Mozilla Firefox\firefox.exe")
+firefox.open('https://web.whatsapp.com/')
+input("Press...")
+sleep(1)

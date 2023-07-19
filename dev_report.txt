@@ -7,6 +7,7 @@ Started: 25/05/2023
 The first serious version of RoZAP bot, named of 1.0.0
 Updated: 12/07/2023
 ---00:49pm---
+
     The provided code is a Python script that interacts with the WhatsApp Web interface using Selenium. It allows users to send messages, receive messages, and perform specific actions based on the received messages.
     
     The script defines several functions:
@@ -38,3 +39,48 @@ Updated: 12/07/2023
             selenium: The primary library used for automating the Firefox browser and interacting with the WhatsApp Web interface.
 
         These resources and libraries were instrumental in the development of the script, enabling the automation of WhatsApp message processing and integration with external sources for retrieving quotes.
+
+The new version of RoZAP bot, named of 1.2.1
+Updated: 18/07/2023
+---22:22pm---
+
+    RoZAP Code Updates:
+        I would like to share with you the latest updates implemented in the RoZAP code. These changes aim to increase the functionality and visibility of the system, making it even more efficient and easy to maintain.
+
+        New function "/lyrics":
+        One of the main additions is the implementation of the new "/letters" function.
+
+        Code separation into multiple files:
+        To improve the visibility and organization of our code, I performed a significant refactoring. Now, the chatbot functions have been separated into multiple files, allowing for better modularity and ease of maintenance. Each file focuses on specific functionality, making it easy to find and modify specific sections of code. This modular approach improves collaboration and ensures a more structured and scalable codebase.
+        
+    Existing functions in the RoZAP chatbot so far:
+        "/help" command:
+        Description: Displays a help message with available commands and their syntax.
+        Usage: /help
+        Action: Sends a message containing the available commands and their syntax to the user.
+
+        "/phrase" command:
+        Description: Retrieves a random phrase from a specified author.
+        Usage: /phrase (author's name)
+        Action: Retrieves a random phrase from the specified author and sends it as a response. If the phrase is too long, an error message is sent.
+
+        "/language" command:
+        Description: Shows the language codes available for translation.
+        Usage: /language
+        Action: Returns a list of available language codes for translation.
+
+        "/translate" command:
+        Description: Translates text to the desired language.
+        Usage: /translate (source language code) (target language code) (text)
+        Action: Translates the provided text from the source language to the target language and returns the translated text.
+
+        "/lyrics" command:
+        Description: Sends the lyrics of a specified song.
+        Usage: /lyrics (song name)
+        Action: Retrieves the lyrics of the specified song and sends them as a response. If the song is not found, an error message is sent.
+
+        Responding to "RoZAP" mentions:
+        Description: Responds when the bot is mentioned by the name.
+        Action: Sends a fun message in response to being mentioned as "RoZAP".
+
+        These functions provide a richer experience for users, allowing them to obtain inspiring phrases, translations, and song lyrics easily and quickly.

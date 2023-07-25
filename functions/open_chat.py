@@ -13,7 +13,7 @@ def open_chat(browser):
             chat.click()
             sleep(2)
 
-            initial_message = 'Opaa! Eu sou o RoZAP\nEnvie */help* para ver os comandos'
+            initial_message = 'Opaa! Eu sou o RoZAP.\nEnvie */help* para ver os comandos'
             functions.send(browser, initial_message)
             break
         except NoSuchElementException:
@@ -27,7 +27,7 @@ def change_chat(browser, name_chat):
             chat.click()
             sleep(2)
 
-            initial_message = 'Opaa! Eu sou o RoZAP\nEnvie */help* para ver os comandos'
+            initial_message = 'Opaa! Eu sou o RoZAP.\nEnvie */help* para ver os comandos'
             functions.send(browser, initial_message)
             break
         except NoSuchElementException:

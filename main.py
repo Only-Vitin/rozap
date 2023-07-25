@@ -54,25 +54,27 @@ def process_messages(browser):
                 name_chat = ' '.join(name_chat)
                 functions.change_chat(browser, name_chat)
             else:
-                functions.send(browser, '*Ow fiii*, vc n pode usar esse comando não!')
+                functions.send(browser, 'O cara tentando mudar de assunto.')
 
         if text[0] == '/stop':
             if last_author == 'Eu':
+                functions.send(browser, 'Zzz Zzz Zzz')
                 browser.quit()
                 break
             else:
-                functions.send(browser, '*Ow fiii*, vc n pode usar esse comando não!')
+                functions.send(browser, 'Vários paga de amigo mas tá na crocodilagem.')
         
         if text[0] == '/help':
-            help_message = '*Comandos:*\n\n*/phrase (nome do autor)* - Envia uma frase aleatória do autor desejado\n*/language (idioma)* - Mostra o código dos idiomas\n*/translate (código do idioma do texto) (código do idioma desejado) (texto)* - Traduz um texto para o idioma selecionado\n*/lyrics (nome da música)* - Envia a letra da música\n\n*Obs:* não precisa dos parênteses'
-            functions.send(browser, help_message)
-
+            functions.send(browser, '*Comandos:*\n\n*/phrase (nome do autor)* - Envia uma frase aleatória do autor desejado\n*/language (idioma)* - Mostra o código dos idiomas\n*/translate (código do idioma do texto) (código do idioma desejado) (texto)* - Traduz um texto para o idioma selecionado\n*/lyrics (nome da música)* - Envia a letra da música\n*/helplist* - Comandos da lista\n\n*Obs:* não precisa dos parênteses')
+        
+        if text[0] == '/helplist':
+            functions.send(browser, '*Comandos /list:*\n\n*/list* - Mostra as suas listas\n*/list (nome da lista)* - Mostra a lista selecionada\n*/list (nome da lista)* - Cria uma lista caso ainda não tenha uma lista com esse nome\n*/listadd (nome da lista) (item)* - Adiciona um item à lista\n*/listcut (nome da lista) (item)* - Remove o item selecionado\n*/listcheck (nome da lista) (item)* - Risca o item\n*/listdelete (nome da lista)* - Deleta a lista selecionada')
+        
         if text[0] == '/phrase':
             try:
                 if len(text) < 3:
                     if len(text) < 2:
-                        error_message = 'Digita o comando certo ai vey...'
-                        functions.send(browser, error_message)
+                        functions.send(browser, 'Digita o comando certo ai vey...')
                         continue
                     author = text[1]
                 else:
@@ -86,12 +88,10 @@ def process_messages(browser):
                 if len(phrase) < 450:
                     functions.send(browser, f'*{author_name}:*\n\n{phrase}')
                 else:
-                    error_message = '*Ops!* Acho que a frase é muito grande. Tente novamente, por favor.'
-                    functions.send(browser, error_message)
+                    functions.send(browser, 'Acho que a frase é muito grande. Tenta de novo ai por favor.')
                     continue
             except IndexError:
-                error_message = 'Foi mal ;-; Não consegui encontrar esse autor. Tente com um diferente, por favor.'
-                functions.send(browser, error_message)
+                functions.send(browser, 'Foi mal ;-; Não consegui encontrar esse autor. Tente com um diferente, por favor.')
                 continue
         
         if text[0] == '/language':
@@ -101,24 +101,20 @@ def process_messages(browser):
                 if resultado:
                     functions.send_withou_enter(browser, '*Idiomas encontrados:* \n')
                     for _, codigo in resultado.items():
-                        lan_message = f"{codigo}"
-                        functions.send_withou_enter(browser, lan_message + '\n')
+                        functions.send_withou_enter(browser, f'{codigo}\n')
                     text_box = browser.find_element(By.CSS_SELECTOR, 'div[title="Mensagem"]')
                     text_box.send_keys(Keys.ENTER)
                 else:
-                    error_message = 'Não encontrei nenhum idioma com esse nome... tem certeza que escreveu certo?'
-                    functions.send(browser, error_message)
+                    functions.send(browser, 'Não encontrei nenhum idioma com esse nome... tem certeza que escreveu certo?')
             except IndexError:
-                error_message = '*É...* acho que tu mandou errado.'
-                functions.send(browser, error_message)
+                functions.send(browser, 'É... acho que tu mandou errado.')
                 continue
             
         if text[0] == '/translate':
             while True:
                 try:
                     if len(text) < 4:
-                        error_message = '*Ow...* acho que você digitou o comando erradamente.\nEnvie */help* para ver a sintaxe do comando'
-                        message.send(browser, error_message)
+                        message.send(browser, 'Ow... acho que você digitou o comando erradamente.')
                         continue
                     else:
                         language_r = text[1]
@@ -134,33 +130,28 @@ def process_messages(browser):
                         functions.send(browser, f'*Texto Traduzido:*\n\n{translated_text}')
                         break
                 except IndexError:
-                    error_message = '*Hm...* Não consegui traduzir'
-                    functions.send(browser, error_message)
+                    functions.send(browser, 'Hm... Não consegui traduzir')
                     continue
         
         if text[0] == '/lyrics':
             try:
                 if len(text) < 2:
-                    error_message = '*Fiii*, escreve certo'
-                    functions.send(browser, error_message)
+                    functions.send(browser, 'Fiii, escreve certo né')
                     continue
                 music = ' '.join(text[1:])
                 lyrics, music_name = functions.get_lyrics(music)
                 if lyrics:
-                    wait_message = '*Aguarde um momento...*'
-                    functions.send(browser, wait_message)
+                    functions.send(browser, '*Um minutinho...*')
                     functions.send_withou_enter(browser, f'Letra da música *"{music_name}"*\n\n')
                     for phrases in lyrics:
                         functions.send_withou_enter(browser, phrases + "\n")
                     text_box = browser.find_element(By.CSS_SELECTOR, 'div[title="Mensagem"]')
                     text_box.send_keys(Keys.ENTER)
                 else:
-                    error_message = 'Rapazzz tá certo isso ??? Não achei a música'
-                    functions.send(browser, error_message)
+                    functions.send(browser, 'Rapazzz tá certo isso ??? Não achei a música')
                     continue
             except AttributeError:
-                error_message = '*Ent...* não achei a música, quer tentar de novo ?'
-                functions.send(browser, error_message)
+                functions.send(browser, 'Ent... não achei essa música ai não, quer tentar de novo ?')
                 continue
         
         keys = r.keys('*')
@@ -175,7 +166,7 @@ def process_messages(browser):
                         lists.append(key + '\n')
                         print(key)
                 if len(lists) < 1:
-                    functions.send(browser, 'Você não tem nenhuma lista')
+                    functions.send(browser, 'Você não tem nenhuma lista... ainda')
                     continue
                 else:
                     functions.send_withou_enter(browser, f'*Suas listas:*\n\n')
@@ -191,11 +182,11 @@ def process_messages(browser):
                     functions.send(browser, element)
                 else:
                     r.set(chave, '\n')
-                    functions.send(browser, '*Dei uma criada na lista*')
+                    functions.send(browser, 'Dei uma criada forte na lista.')
         
         if text[0] == '/listadd':
             if len(text) < 2:
-                functions.send(browser, '*Fiii*, escreve certo')
+                functions.send(browser, 'Vey, ta faltando coisa ai nesse comando.')
                 continue
             else:
                 item = ' '.join(text[2:])
@@ -203,7 +194,7 @@ def process_messages(browser):
                 if chave in keys:
                     r.append(chave, f'○ {item}\n')
                     element = r.get(chave)
-                    functions.send(browser, 'Item adicionado com sucesso')
+                    functions.send(browser, 'Botei ><')
                     functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
                     functions.send(browser, element)
                 else:
@@ -212,7 +203,7 @@ def process_messages(browser):
             
         if text[0] == '/listcut':
             if len(text) < 2:
-                functions.send(browser, '*Fiii*, escreve certo')
+                functions.send(browser, 'O cara não mandou o */help* não é possível.')
                 continue
             else:
                 join_item = ' '.join(text[2:])
@@ -229,7 +220,7 @@ def process_messages(browser):
                             r.set(chave, ' ')
                             r.append(chave, novo_valor)
                             
-                            functions.send(browser, '*Item removido com sucesso*')
+                            functions.send(browser, 'Levei esse item pras ideia.')
                             element = r.get(chave)
                             functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
                             functions.send(browser, element)
@@ -241,20 +232,20 @@ def process_messages(browser):
                                 r.set(chave, ' ')
                                 r.append(chave, novo_valor)
                                 
-                                functions.send(browser, '*Item removido com sucesso*')
+                                functions.send(browser, 'Levei esse item pras ideia.')
                                 element = r.get(chave)
                                 functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
                                 functions.send(browser, element)
                             else:
-                                functions.send(browser, '*O item especificado não existe na lista*')
+                                functions.send(browser, 'Cara tentando tirar algo que não existe, intankável.')
                     else:
-                        functions.send(browser, '*A chave especificada não existe no Redis*')
+                        functions.send(browser, 'Não tem essa lista não.')
                 else:
-                    functions.send(browser, 'Acho que essa lista não existe...')
+                    functions.send(browser, 'Acho que essa lista não existe heinn.')
         
         if text[0] == '/listcheck':
             if len(text) < 2:
-                functions.send(browser, '*Fiii*, escreve certo')
+                functions.send(browser, 'Mano, envia o */help* na moral.')
                 continue
             else:
                 chave = f'{text[1]} {last_author}'
@@ -273,7 +264,7 @@ def process_messages(browser):
                             r.set(chave, ' ')
                             r.append(chave, novo_valor)
                             
-                            functions.send(browser, '*Item checkado com sucesso*')
+                            functions.send(browser, 'Dei uma checkada.')
                             element = r.get(chave)
                             functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
                             functions.send(browser, element)
@@ -288,33 +279,39 @@ def process_messages(browser):
                                 r.set(chave, ' ')
                                 r.append(chave, novo_valor)
                                 
-                                functions.send(browser, '*Tirei o check*')
+                                functions.send(browser, 'Ctrl Z fds')
                                 element = r.get(chave)
                                 functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
                                 functions.send(browser, element)
                             else:
-                                functions.send(browser, '*O item especificado não existe na lista*')
+                                functions.send(browser, 'Não ta tendo esse item não')
                     else:
-                        functions.send(browser, '*A chave especificada não existe no Redis*')
+                        functions.send(browser, 'Essa lista ai eu não achei')
                 else:
-                    functions.send(browser, 'Acho que essa lista não existe...')
+                    functions.send(browser, 'Ah... não achei essa lista')
         
         if text[0] == '/listdelete':
             if len(text) < 2:
-                functions.send(browser, '*Fiii*, escreve certo')
+                functions.send(browser, 'Cara não sabe usar um comando vey')
                 continue
             else:
                 chave = f'{text[1]} {last_author}'
                 if chave in keys:
                     r.delete(chave)
-                    functions.send(browser, 'Lista deletada com sucesso')
+                    functions.send(browser, 'A lista foi de americanas')
                 else:
-                    functions.send(browser, 'Acho que essa lista não existe...')
+                    functions.send(browser, 'Não sei dessa lista não')
         
         for i in range(len(text)):
             text[i] = text[i].lower()
         if 'rozap' in text:
             functions.send(browser, 'Qual foi irmão? Pq c ta falando meu nome em vão')
+        sleep(1)
+        
+        for i in range(len(text)):
+            text[i] = text[i].lower()
+        if 'vitin' in text:
+            functions.send(browser, 'Vitin é lindo né')
         sleep(1)
 
 def main():

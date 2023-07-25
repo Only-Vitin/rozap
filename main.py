@@ -1,5 +1,6 @@
 import functions
 # Libraries
+import redis
 from time import sleep
 from unidecode import unidecode
 from selenium.webdriver.common.by import By
@@ -8,53 +9,60 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
-def open_chat(browser):
-    while True:
-        try:
-            name_chat = input("Insira o nome do chat: ")
-
-            chat = browser.find_element(By.XPATH, f"//span[@title='{name_chat}']")
-            chat.click()
-            sleep(2)
-
-            initial_message = 'Opaa! Eu sou o RoZAP\nEnvie */help* para ver os comandos'
-            functions.send(browser, initial_message)
-            break
-        except NoSuchElementException:
-            print("Digite um nome válido e que esteja aparecendo na tela")
-            continue
+REDIS_HOST = 'redis-18629.c308.sa-east-1-1.ec2.cloud.redislabs.com'
+REDIS_PORT = 18629
+REDIS_PASSWORD = '6DxAeE5KzFNff7h7QbwLUg9wKnnixi1E'
+r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, password=REDIS_PASSWORD, decode_responses=True)
 
 def process_messages(browser):
     #Last Message
+    last_author = None
+    last_message = None
     while True:
         messages = browser.find_elements(By.CSS_SELECTOR, ".message-in, .message-out")
-        last_message = None
 
         for message in reversed(messages):
-            if message.get_attribute("class").startswith("message-in"):
+            message_class = message.get_attribute("class")
+            if message_class.startswith("message-in"):
                 WebDriverWait(browser, 10).until(EC.visibility_of(message))
                 try:
                     last_message = message.find_element(By.CSS_SELECTOR, ".selectable-text")
+                    last_author = message.find_element(By.CSS_SELECTOR, "span[data-testid='author']").text
                     break
                 except NoSuchElementException:
                     continue
-            elif message.get_attribute("class").startswith("message-out"):
+            elif message_class.startswith("message-out"):
                 WebDriverWait(browser, 10).until(EC.visibility_of(message))
                 try:
                     last_message = message.find_element(By.CSS_SELECTOR, ".selectable-text")
+                    last_author = 'RoZAP'
                     break
                 except NoSuchElementException:
                     continue
 
         last_message_text = last_message.text if last_message else ""
         if last_message_text:
-            print("Última mensagem enviada:", last_message_text)
+            print("Última mensagem enviada por:", last_author)
+            print("Última mensagem:", last_message_text)
+
         text = last_message_text.split(" ")
         
-    #Functions
+        #Functions
         if text[0] == '/changechat':
-            open_chat(browser)
+            if last_author == 'Eu':
+                name_chat = text[1:]
+                name_chat = ' '.join(name_chat)
+                functions.change_chat(browser, name_chat)
+            else:
+                functions.send(browser, '*Ow fiii*, vc n pode usar esse comando não!')
 
+        if text[0] == '/stop':
+            if last_author == 'Eu':
+                browser.quit()
+                break
+            else:
+                functions.send(browser, '*Ow fiii*, vc n pode usar esse comando não!')
+        
         if text[0] == '/help':
             help_message = '*Comandos:*\n\n*/phrase (nome do autor)* - Envia uma frase aleatória do autor desejado\n*/language (idioma)* - Mostra o código dos idiomas\n*/translate (código do idioma do texto) (código do idioma desejado) (texto)* - Traduz um texto para o idioma selecionado\n*/lyrics (nome da música)* - Envia a letra da música\n\n*Obs:* não precisa dos parênteses'
             functions.send(browser, help_message)
@@ -155,16 +163,163 @@ def process_messages(browser):
                 functions.send(browser, error_message)
                 continue
         
+        keys = r.keys('*')
+        if text[0] == '/list':
+            lists = []
+            if len(text) < 2:
+                for key in keys:
+                    key = key.split(' ')
+                    if last_author in key:
+                        key.pop()
+                        key = ' '.join(key)
+                        lists.append(key + '\n')
+                        print(key)
+                if len(lists) < 1:
+                    functions.send(browser, 'Você não tem nenhuma lista')
+                    continue
+                else:
+                    functions.send_withou_enter(browser, f'*Suas listas:*\n\n')
+                    for listy in lists:
+                        functions.send_withou_enter(browser, listy)
+                    text_box = browser.find_element(By.CSS_SELECTOR, 'div[title="Mensagem"]')
+                    text_box.send_keys(Keys.ENTER)
+            else:
+                chave = f'{text[1]} {last_author}'
+                if chave in keys:
+                    element = r.get(chave)
+                    functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
+                    functions.send(browser, element)
+                else:
+                    r.set(chave, '\n')
+                    functions.send(browser, '*Dei uma criada na lista*')
+        
+        if text[0] == '/listadd':
+            if len(text) < 2:
+                functions.send(browser, '*Fiii*, escreve certo')
+                continue
+            else:
+                item = ' '.join(text[2:])
+                chave = f'{text[1]} {last_author}'
+                if chave in keys:
+                    r.append(chave, f'○ {item}\n')
+                    element = r.get(chave)
+                    functions.send(browser, 'Item adicionado com sucesso')
+                    functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
+                    functions.send(browser, element)
+                else:
+                    functions.send(browser, 'Acho que essa lista não existe...')
+                    continue
+            
+        if text[0] == '/listcut':
+            if len(text) < 2:
+                functions.send(browser, '*Fiii*, escreve certo')
+                continue
+            else:
+                join_item = ' '.join(text[2:])
+                item = f'○ {join_item}'
+                chave = f'{text[1]} {last_author}'
+                if chave in keys:
+                    valor_atual = r.get(chave)
+                    if valor_atual:
+                        lista_valores = valor_atual.split('\n')
+                        print(lista_valores)
+                        if item in lista_valores:
+                            lista_valores.remove(item)
+                            novo_valor = '\n'.join(lista_valores)
+                            r.set(chave, ' ')
+                            r.append(chave, novo_valor)
+                            
+                            functions.send(browser, '*Item removido com sucesso*')
+                            element = r.get(chave)
+                            functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
+                            functions.send(browser, element)
+                        else:
+                            item = f'● ~{itemj}~'
+                            if item in lista_valores:
+                                lista_valores.remove(item)
+                                novo_valor = '\n'.join(lista_valores)
+                                r.set(chave, ' ')
+                                r.append(chave, novo_valor)
+                                
+                                functions.send(browser, '*Item removido com sucesso*')
+                                element = r.get(chave)
+                                functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
+                                functions.send(browser, element)
+                            else:
+                                functions.send(browser, '*O item especificado não existe na lista*')
+                    else:
+                        functions.send(browser, '*A chave especificada não existe no Redis*')
+                else:
+                    functions.send(browser, 'Acho que essa lista não existe...')
+        
+        if text[0] == '/listcheck':
+            if len(text) < 2:
+                functions.send(browser, '*Fiii*, escreve certo')
+                continue
+            else:
+                chave = f'{text[1]} {last_author}'
+                itemj = ' '.join(text[2:])
+                item = f'○ {itemj}'
+                if chave in keys:
+                    valor_atual = r.get(chave)
+                    if valor_atual:
+                        lista_valores = valor_atual.split('\n')
+                        if item in lista_valores:
+                            for i in range(len(lista_valores)):
+                                if item == lista_valores[i]:
+                                    lista_valores[i] = f'● ~{itemj}~'
+                                    break
+                            novo_valor = '\n'.join(lista_valores)
+                            r.set(chave, ' ')
+                            r.append(chave, novo_valor)
+                            
+                            functions.send(browser, '*Item checkado com sucesso*')
+                            element = r.get(chave)
+                            functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
+                            functions.send(browser, element)
+                        else:
+                            item = f'● ~{itemj}~'
+                            if item in lista_valores:
+                                for i in range(len(lista_valores)):
+                                    if item == lista_valores[i]:
+                                        lista_valores[i] = f'○ {itemj}'
+                                        break
+                                novo_valor = '\n'.join(lista_valores)
+                                r.set(chave, ' ')
+                                r.append(chave, novo_valor)
+                                
+                                functions.send(browser, '*Tirei o check*')
+                                element = r.get(chave)
+                                functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
+                                functions.send(browser, element)
+                            else:
+                                functions.send(browser, '*O item especificado não existe na lista*')
+                    else:
+                        functions.send(browser, '*A chave especificada não existe no Redis*')
+                else:
+                    functions.send(browser, 'Acho que essa lista não existe...')
+        
+        if text[0] == '/listdelete':
+            if len(text) < 2:
+                functions.send(browser, '*Fiii*, escreve certo')
+                continue
+            else:
+                chave = f'{text[1]} {last_author}'
+                if chave in keys:
+                    r.delete(chave)
+                    functions.send(browser, 'Lista deletada com sucesso')
+                else:
+                    functions.send(browser, 'Acho que essa lista não existe...')
+        
         for i in range(len(text)):
             text[i] = text[i].lower()
         if 'rozap' in text:
-            rozap_message = 'Qual foi irmão? Pq c ta falando meu nome em vão'
-            functions.send(browser, rozap_message)
+            functions.send(browser, 'Qual foi irmão? Pq c ta falando meu nome em vão')
         sleep(1)
 
 def main():
     browser = functions.configure_browser()
-    open_chat(browser)
+    functions.open_chat(browser)
     process_messages(browser)
 
 if __name__ == '__main__':

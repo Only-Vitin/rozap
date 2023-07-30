@@ -6,10 +6,14 @@ from selenium.common.exceptions import NoSuchElementException
 
 def open_chat(browser):
     while True:
-        try:
+        try:               
             name_chat = input("Insira o nome do chat: ")
+            
+            archived = browser.find_element(By.CSS_SELECTOR, 'span[data-testid="archived"]')
+            archived.click()
+            sleep(1)
 
-            chat = browser.find_element(By.XPATH, f"//span[@title='{name_chat}']")
+            chat = browser.find_element(By.CSS_SELECTOR, f"span[title='{name_chat}']")
             chat.click()
             sleep(2)
 
@@ -23,7 +27,7 @@ def open_chat(browser):
 def change_chat(browser, name_chat):
     while True:
         try:
-            chat = browser.find_element(By.XPATH, f"//span[@title='{name_chat}']")
+            chat = browser.find_element(By.CSS_SELECTOR, f"span[title='{name_chat}']")
             chat.click()
             sleep(2)
 

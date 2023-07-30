@@ -314,7 +314,7 @@ def process_messages(browser):
 def main():
     browser = functions.configure_browser()
     functions.open_chat(browser)
-    process_messages(browser)
+    process_messages(browser) 
 
 if __name__ == '__main__':
     main()

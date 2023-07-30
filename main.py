@@ -1,7 +1,9 @@
 import functions
 # Libraries
+import os
 import redis
 from time import sleep
+from dotenv import load_dotenv
 from unidecode import unidecode
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -9,9 +11,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
-REDIS_HOST = 'redis-18629.c308.sa-east-1-1.ec2.cloud.redislabs.com'
-REDIS_PORT = 18629
-REDIS_PASSWORD = '6DxAeE5KzFNff7h7QbwLUg9wKnnixi1E'
+load_dotenv()
+REDIS_HOST = os.environ['REDIS_HOST']
+REDIS_PORT = os.environ['REDIS_PORT']
+REDIS_PASSWORD = os.environ['REDIS_PASSWORD']
 r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, password=REDIS_PASSWORD, decode_responses=True)
 
 def process_messages(browser):
@@ -197,9 +200,9 @@ def process_messages(browser):
                     functions.send(browser, 'Botei ><')
                     functions.send_withou_enter(browser, f'*Lista:* {text[1]}\n')
                     functions.send(browser, element)
+                    continue
                 else:
                     functions.send(browser, 'Acho que essa lista não existe...')
-                    continue
             
         if text[0] == '/listcut':
             if len(text) < 2:
@@ -308,12 +311,6 @@ def process_messages(browser):
             functions.send(browser, 'Qual foi irmão? Pq c ta falando meu nome em vão')
         sleep(1)
         
-        for i in range(len(text)):
-            text[i] = text[i].lower()
-        if 'vitin' in text:
-            functions.send(browser, 'Vitin é lindo né')
-        sleep(1)
-
 def main():
     browser = functions.configure_browser()
     functions.open_chat(browser)

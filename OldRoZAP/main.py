@@ -49,7 +49,8 @@ def process_messages(browser):
             print("Última mensagem:", last_message_text)
 
         text = last_message_text.split(" ")
-        
+###############################################################################################################3
+
         #Functions
         if text[0] == '/changechat':
             if last_author == 'Eu':

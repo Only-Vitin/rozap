@@ -1,0 +1,86 @@
+-------------------
+| Devs: OnlyVitin |
+-------------------
+Started: 25/05/2023
+---19:37pm---
+
+The first serious version of RoZAP bot, named of 1.0.0
+Updated: 12/07/2023
+---00:49pm---
+
+    The provided code is a Python script that interacts with the WhatsApp Web interface using Selenium. It allows users to send messages, receive messages, and perform specific actions based on the received messages.
+    
+    The script defines several functions:
+
+        configure_browser(): Sets up and configures the Firefox browser with specific options and a user profile. Returns the configured browser instance.
+        open_gpt(browser): Opens a new tab in the browser and loads the OpenAI ChatGPT interface.
+        open_chat(browser): Asks the user to provide the name of a chat and opens that chat in the WhatsApp Web interface.
+        send_message(browser, message): Enters and sends a message in the active chat.
+        get_phrase(author): Scrapes a website to retrieve a random quote from the specified author.
+        process_messages(browser): Constantly monitors and processes incoming messages in the active chat, performing specific actions based on the content of the messages.
+        main(): Orchestrates the execution of the script by configuring the browser, authenticating the WhatsApp Web session, opening the desired chat, and initiating the message processing loop.
+
+        To use the script, the user needs to provide their Firefox profile path, authenticate the WhatsApp Web session manually, and interact with the script through the console. The script provides a set of commands that can be sent as messages in the chat, such as /help to see the available commands and /phrase author to receive a random quote from the specified author.
+        Please note that the script assumes the presence of specific elements and classes on the WhatsApp Web interface, and it may require adjustments if the interface structure changes in the future.
+
+        In the development of this script, the following resources and libraries were utilized:
+
+            Chat GPT: The script interacts with the OpenAI ChatGPT interface, which provides natural language processing capabilities for generating responses based on input messages.
+            YouTube Videos: Various YouTube videos were referenced to learn about web scraping with BeautifulSoup, using Selenium for browser automation, and integrating with WhatsApp Web.
+            Internet Research: Several websites and online resources were consulted to gather information on web scraping techniques, Selenium usage, and best practices for interacting with WhatsApp Web.
+
+        The following libraries played a significant role in the implementation of this script:
+
+            requests: Used for making HTTP requests to retrieve web pages during web scraping.
+            time: Imported for incorporating time-related functionalities, such as delays and sleep periods, to control the script's execution timing.
+            random: Utilized for generating random integers to select a random quote from a list of phrases.
+            beautifulsoup: This library provided tools for parsing and navigating HTML documents during web scraping.
+            unidecode: Imported to handle Unicode characters and convert them to ASCII equivalents during author name processing.
+            selenium: The primary library used for automating the Firefox browser and interacting with the WhatsApp Web interface.
+
+        These resources and libraries were instrumental in the development of the script, enabling the automation of WhatsApp message processing and integration with external sources for retrieving quotes.
+
+The new version of RoZAP bot, named of 1.2.1
+Updated: 18/07/2023
+---22:23pm---
+
+    RoZAP Code Updates:
+        I would like to share with you the latest updates implemented in the RoZAP code. These changes aim to increase the functionality and visibility of the system, making it even more efficient and easy to maintain.
+
+        New function "/lyrics":
+        One of the main additions is the implementation of the new "/letters" function.
+
+        Code separation into multiple files:
+        To improve the visibility and organization of our code, I performed a significant refactoring. Now, the chatbot functions have been separated into multiple files, allowing for better modularity and ease of maintenance. Each file focuses on specific functionality, making it easy to find and modify specific sections of code. This modular approach improves collaboration and ensures a more structured and scalable codebase.
+        
+    Existing functions in the RoZAP chatbot so far:
+        "/help" command:
+        Description: Displays a help message with available commands and their syntax.
+        Usage: /help
+        Action: Sends a message containing the available commands and their syntax to the user.
+
+        "/phrase" command:
+        Description: Retrieves a random phrase from a specified author.
+        Usage: /phrase (author's name)
+        Action: Retrieves a random phrase from the specified author and sends it as a response. If the phrase is too long, an error message is sent.
+
+        "/language" command:
+        Description: Shows the language codes available for translation.
+        Usage: /language
+        Action: Returns a list of available language codes for translation.
+
+        "/translate" command:
+        Description: Translates text to the desired language.
+        Usage: /translate (source language code) (target language code) (text)
+        Action: Translates the provided text from the source language to the target language and returns the translated text.
+
+        "/lyrics" command:
+        Description: Sends the lyrics of a specified song.
+        Usage: /lyrics (song name)
+        Action: Retrieves the lyrics of the specified song and sends them as a response. If the song is not found, an error message is sent.
+
+        Responding to "RoZAP" mentions:
+        Description: Responds when the bot is mentioned by the name.
+        Action: Sends a fun message in response to being mentioned as "RoZAP".
+
+        These functions provide a richer experience for users, allowing them to obtain inspiring phrases, translations, and song lyrics easily and quickly.

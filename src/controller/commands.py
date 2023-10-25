@@ -1,4 +1,4 @@
-from service import Stop, Help, Phrases, Translate, Lyrics
+from service import Stop, Help, Phrases, Translate, Lyrics, Dict
 from utils import send_message
 
 
@@ -27,6 +27,10 @@ def verify_commands(browser, text, last_author):
         case '/lyrics':
             op_lyrics = Lyrics(browser, text)
             op_lyrics.show_lyrics()
+
+        case '/dict':
+            op_dict = Dict(browser, text)
+            op_dict.show_word_meaning()
 
     for i in range(len(text)):
         text[i] = text[i].lower()

@@ -37,19 +37,18 @@ class Lyrics():
         try:
             if len(self.text) < 2:
                 send_message(self.browser, 'Se pá que o comando ta errado hein.')
-                return False
-                
-            music = ' '.join(self.text[1:])
-            lyrics, music_name = self.get_lyrics(music)
-            
-            if lyrics:
-                text_box = self.browser.find_element(By.CSS_SELECTOR, 'div[title="Digite uma mensagem"]')
-                send_message(self.browser, '*Um minutinho...* ninguém é perfeito.')
-                send_message_without_enter(self.browser, f'Letra da música *"{music_name}"*\n\n')
-                for stanzas in lyrics:
-                    send_message_without_enter(self.browser, stanzas)
-                text_box.send_keys(Keys.ENTER)
             else:
-                send_message(self.browser, 'Vey, não achei essa música ai não.')
+                music = ' '.join(self.text[1:])
+                lyrics, music_name = self.get_lyrics(music)
+                
+                if lyrics:
+                    text_box = self.browser.find_element(By.CSS_SELECTOR, 'div[title="Digite uma mensagem"]')
+                    send_message(self.browser, '*Um minutinho...* ninguém é perfeito.')
+                    send_message_without_enter(self.browser, f'Letra da música *"{music_name}"*\n\n')
+                    for stanzas in lyrics:
+                        send_message_without_enter(self.browser, stanzas)
+                    text_box.send_keys(Keys.ENTER)
+                else:
+                    send_message(self.browser, 'Vey, não achei essa música ai não.')
         except AttributeError:
             send_message(self.browser, 'Ent... não achei essa música ai não, quer tentar de novo ?')

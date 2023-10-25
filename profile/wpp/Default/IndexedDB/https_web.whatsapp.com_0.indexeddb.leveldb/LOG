@@ -1,67 +1,14 @@
-2023/10/25-00:16:46.104 a68 Reusing MANIFEST C:\Users\vitin\OneDrive\Documentos\Study\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/10/25-00:16:46.105 a68 Recovering log #348
-2023/10/25-00:16:46.134 a68 Reusing old log C:\Users\vitin\OneDrive\Documentos\Study\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000348.log 
-2023/10/25-00:19:40.568 a68 Level-0 table #363: started
-2023/10/25-00:19:40.590 a68 Level-0 table #363: 1429603 bytes OK
-2023/10/25-00:19:40.593 a68 Delete type=0 #348
-2023/10/25-00:20:20.311 3ecc Compacting 1@0 + 0@1 files
-2023/10/25-00:20:20.328 3ecc Generated table #364@0: 17198 keys, 457991 bytes
-2023/10/25-00:20:20.328 3ecc Compacted 1@0 + 0@1 files => 457991 bytes
-2023/10/25-00:20:20.329 3ecc compacted to: files[ 0 1 10 0 0 0 0 ]
-2023/10/25-00:20:20.659 2b8c Compacting 1@1 + 10@2 files
-2023/10/25-00:20:20.698 2b8c Generated table #365@1: 51564 keys, 2284766 bytes
-2023/10/25-00:20:20.722 2b8c Generated table #366@1: 2944 keys, 2163324 bytes
-2023/10/25-00:20:20.745 2b8c Generated table #367@1: 2927 keys, 2168692 bytes
-2023/10/25-00:20:20.767 2b8c Generated table #368@1: 2885 keys, 2167005 bytes
-2023/10/25-00:20:20.808 2b8c Generated table #369@1: 20283 keys, 2225430 bytes
-2023/10/25-00:20:20.856 2b8c Generated table #370@1: 22573 keys, 2279268 bytes
-2023/10/25-00:20:20.878 2b8c Generated table #371@1: 13244 keys, 2148882 bytes
-2023/10/25-00:20:20.922 2b8c Generated table #372@1: 89562 keys, 2236234 bytes
-2023/10/25-00:20:20.975 2b8c Generated table #373@1: 98832 keys, 2249215 bytes
-2023/10/25-00:20:21.012 2b8c Generated table #374@1: 75179 keys, 1713684 bytes
-2023/10/25-00:20:21.012 2b8c Compacted 1@1 + 10@2 files => 21636500 bytes
-2023/10/25-00:20:21.013 2b8c compacted to: files[ 0 0 10 0 0 0 0 ]
-2023/10/25-00:20:21.013 2b8c Delete type=2 #351
-2023/10/25-00:20:21.013 2b8c Delete type=2 #352
-2023/10/25-00:20:21.013 2b8c Delete type=2 #353
-2023/10/25-00:20:21.013 2b8c Delete type=2 #354
-2023/10/25-00:20:21.013 2b8c Delete type=2 #355
-2023/10/25-00:20:21.013 2b8c Delete type=2 #356
-2023/10/25-00:20:21.013 2b8c Delete type=2 #357
-2023/10/25-00:20:21.013 2b8c Delete type=2 #358
-2023/10/25-00:20:21.013 2b8c Delete type=2 #359
-2023/10/25-00:20:21.013 2b8c Delete type=2 #360
-2023/10/25-00:20:21.013 2b8c Delete type=2 #363
-2023/10/25-00:20:21.013 2b8c Delete type=2 #364
-2023/10/25-00:30:42.419 2b8c Level-0 table #376: started
-2023/10/25-00:30:42.440 2b8c Level-0 table #376: 1193578 bytes OK
-2023/10/25-00:30:42.442 2b8c Delete type=0 #362
-2023/10/25-00:30:49.615 2b8c Compacting 1@0 + 0@1 files
-2023/10/25-00:30:49.636 2b8c Generated table #377@0: 17443 keys, 421959 bytes
-2023/10/25-00:30:49.636 2b8c Compacted 1@0 + 0@1 files => 421959 bytes
-2023/10/25-00:30:49.637 2b8c compacted to: files[ 0 1 10 0 0 0 0 ]
-2023/10/25-00:30:49.637 2b8c Delete type=2 #376
-2023/10/25-00:30:50.280 3ecc Compacting 1@1 + 10@2 files
-2023/10/25-00:30:50.322 3ecc Generated table #378@1: 53822 keys, 2303132 bytes
-2023/10/25-00:30:50.348 3ecc Generated table #379@1: 2948 keys, 2163822 bytes
-2023/10/25-00:30:50.371 3ecc Generated table #380@1: 2924 keys, 2168885 bytes
-2023/10/25-00:30:50.394 3ecc Generated table #381@1: 2877 keys, 2167483 bytes
-2023/10/25-00:30:50.431 3ecc Generated table #382@1: 19112 keys, 2217970 bytes
-2023/10/25-00:30:50.476 3ecc Generated table #383@1: 22524 keys, 2279454 bytes
-2023/10/25-00:30:50.502 3ecc Generated table #384@1: 15139 keys, 2158537 bytes
-2023/10/25-00:30:50.547 3ecc Generated table #385@1: 81430 keys, 2223952 bytes
-2023/10/25-00:30:50.595 3ecc Generated table #386@1: 98848 keys, 2248272 bytes
-2023/10/25-00:30:50.636 3ecc Generated table #387@1: 84307 keys, 1923534 bytes
-2023/10/25-00:30:50.636 3ecc Compacted 1@1 + 10@2 files => 21855041 bytes
-2023/10/25-00:30:50.637 3ecc compacted to: files[ 0 0 10 0 0 0 0 ]
-2023/10/25-00:30:50.637 3ecc Delete type=2 #365
-2023/10/25-00:30:50.637 3ecc Delete type=2 #366
-2023/10/25-00:30:50.637 3ecc Delete type=2 #367
-2023/10/25-00:30:50.637 3ecc Delete type=2 #368
-2023/10/25-00:30:50.637 3ecc Delete type=2 #369
-2023/10/25-00:30:50.637 3ecc Delete type=2 #370
-2023/10/25-00:30:50.637 3ecc Delete type=2 #371
-2023/10/25-00:30:50.637 3ecc Delete type=2 #372
-2023/10/25-00:30:50.637 3ecc Delete type=2 #373
-2023/10/25-00:30:50.637 3ecc Delete type=2 #374
-2023/10/25-00:30:50.637 3ecc Delete type=2 #377
+2023/10/25-17:47:38.405 4d40 Reusing MANIFEST C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/10/25-17:47:38.406 4d40 Recovering log #125
+2023/10/25-17:47:38.422 4d40 Reusing old log C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000125.log 
+2023/10/25-17:52:46.013 37f0 Level-0 table #131: started
+2023/10/25-17:52:46.032 37f0 Level-0 table #131: 1274427 bytes OK
+2023/10/25-17:52:46.033 37f0 Delete type=0 #125
+2023/10/25-17:52:46.613 3c38 Compacting 1@1 + 2@2 files
+2023/10/25-17:52:46.650 3c38 Generated table #132@1: 53115 keys, 2302777 bytes
+2023/10/25-17:52:46.669 3c38 Generated table #133@1: 26714 keys, 913738 bytes
+2023/10/25-17:52:46.669 3c38 Compacted 1@1 + 2@2 files => 3216515 bytes
+2023/10/25-17:52:46.669 3c38 compacted to: files[ 0 0 2 0 0 0 0 ]
+2023/10/25-17:52:46.670 3c38 Delete type=2 #127
+2023/10/25-17:52:46.670 3c38 Delete type=2 #128
+2023/10/25-17:52:46.670 3c38 Delete type=2 #131

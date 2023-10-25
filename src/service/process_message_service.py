@@ -13,7 +13,7 @@ class ProcessMessageService():
         if message_class.startswith("message-in"):
             WebDriverWait(self.browser, 10).until(EC.visibility_of(message))
 
-            last_message = message.find_element(By.CSS_SELECTOR, ".selectable-text")
+            last_message = message.find_element(By.CSS_SELECTOR, "span[class*='copyable-text']")
             author_div = message.find_element(By.CSS_SELECTOR, "div[class*='copyable-text']")
             last_author_data = author_div.get_attribute("data-pre-plain-text")
             last_author = last_author_data.split()
@@ -39,8 +39,14 @@ class ProcessMessageService():
                 last_message_text = last_message.text if last_message else ""
                 text = last_message_text.split()
                 
+                if len(text) < 1:
+                    print("Algo que não é texto")
+                    continue
+                
                 return text, last_author
             except StaleElementReferenceException:
                 continue
             except NoSuchElementException:
+                continue
+            except UnboundLocalError:
                 continue

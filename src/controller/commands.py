@@ -1,49 +1,34 @@
-from service import Stop, Help, Phrases
+from service import Stop, Help, Phrases, Translate, Lyrics
 from utils import send_message
 
 
 def verify_commands(browser, text, last_author):
-    if text[0] == '/stop':
-        op_stop = Stop(browser, last_author)
-        op_stop.stop_program()
+    match text[0]:
+        case '/stop':
+            op_stop = Stop(browser, last_author)
+            op_stop.stop_program()
+            
+        case '/help':
+            op_help = Help(browser)
+            op_help.show_help_message()
 
-    elif text[0] == '/help':
-        op_help = Help(browser)
-        op_help.show_help_message()
+        case '/phrase':
+            op_phrases = Phrases(browser, text)
+            op_phrases.show_phrase()
 
-    elif text[0] == '/helplist':
-        op_help = Help(browser)
-        op_help.show_help_list_message()
+        case '/language':
+            op_language = Translate(browser, text)
+            op_language.show_language_codes()
 
-    elif text[0] == '/phrase':
-        op_phrases = Phrases(browser, text)
-        op_phrases.show_phrase()
-
-    elif text[0] == '/language':
-        ...
-
-    elif text[0] == '/translate':
-        ...
-
-    elif text[0] == '/lyrics':
-        ...
-
-    elif text[0] == '/list':
-        ...
-
-    elif text[0] == '/listadd':
-        ...
-
-    elif text[0] == '/listcut':
-        ...
-
-    elif text[0] == '/listcheck':
-        ...
-
-    elif text[0] == '/listdelete':
-        ...
+        case '/translate':
+            op_translate = Translate(browser, text)
+            op_translate.show_translated_text()
+            
+        case '/lyrics':
+            op_lyrics = Lyrics(browser, text)
+            op_lyrics.show_lyrics()
 
     for i in range(len(text)):
         text[i] = text[i].lower()
     if 'rozap' in text:
-        send_message(browser, 'Qual foi irmão? Pq c ta falando meu nome em vão')
+        send_message(browser, f'O {last_author}... quem você pensa que é?')

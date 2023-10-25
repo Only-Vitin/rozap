@@ -12,7 +12,7 @@ def open_chat(browser):
             chat_service = ChatService(browser)
             chat_service.open_chat_on_archived(name_chat)
 
-            initial_message = 'Opaa! Eu sou o RoZAP.\nEnvie */help* para ver os comandos'
+            initial_message = 'Opaaa, bãozin fi? Eu sou o RoZAP.\nManda um */help* para ver os comandos'
             send_message(browser, initial_message)
             break
         except NoSuchElementException:

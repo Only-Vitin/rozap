@@ -8,7 +8,6 @@ def main():
     browser = config_browser.browser
 
     open_chat(browser)
-
     while True:
         text, last_author = read_messages(browser)
         verify_commands(browser, text, last_author)

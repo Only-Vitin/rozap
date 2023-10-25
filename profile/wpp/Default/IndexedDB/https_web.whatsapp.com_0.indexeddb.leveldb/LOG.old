@@ -1,54 +1,14 @@
-2023/10/24-18:05:58.373 2b9c Reusing MANIFEST C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/10/24-18:05:58.374 2b9c Recovering log #1224
-2023/10/24-18:05:58.381 2b9c Reusing old log C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/001224.log 
-2023/10/24-18:05:59.343 6548 Level-0 table #1241: started
-2023/10/24-18:05:59.351 6548 Level-0 table #1241: 273157 bytes OK
-2023/10/24-18:05:59.353 6548 Delete type=0 #1224
-2023/10/24-18:05:59.354 6548 Manual compaction at level-0 from '\x00s\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00t\x00\x00\x00' @ 0 : 0; will stop at '\x00s\x00\x00\x05' @ 3169013 : 1
-2023/10/24-18:05:59.354 6548 Compacting 1@0 + 1@1 files
-2023/10/24-18:05:59.360 6548 Generated table #1242@0: 5245 keys, 130934 bytes
-2023/10/24-18:05:59.362 6548 Generated table #1243@0: 233 keys, 4907 bytes
-2023/10/24-18:05:59.362 6548 Compacted 1@0 + 1@1 files => 135841 bytes
-2023/10/24-18:05:59.363 6548 compacted to: files[ 0 2 18 0 0 0 0 ]
-2023/10/24-18:05:59.363 6548 Delete type=2 #1241
-2023/10/24-18:05:59.363 2b9c Manual compaction at level-0 from '\x00s\x00\x00\x05' @ 3169013 : 1 .. '\x00t\x00\x00\x00' @ 0 : 0; will stop at (end)
-2023/10/24-18:05:59.531 3be4 Compacting 1@1 + 10@2 files
-2023/10/24-18:05:59.572 3be4 Generated table #1244@1: 70755 keys, 2297965 bytes
-2023/10/24-18:05:59.606 3be4 Generated table #1245@1: 6240 keys, 2170750 bytes
-2023/10/24-18:05:59.635 3be4 Generated table #1246@1: 3012 keys, 2167447 bytes
-2023/10/24-18:05:59.665 3be4 Generated table #1247@1: 2803 keys, 2166813 bytes
-2023/10/24-18:05:59.700 3be4 Generated table #1248@1: 11989 keys, 2181098 bytes
-2023/10/24-18:05:59.762 3be4 Generated table #1249@1: 22775 keys, 2282044 bytes
-2023/10/24-18:05:59.813 3be4 Generated table #1250@1: 22355 keys, 2216310 bytes
-2023/10/24-18:05:59.854 3be4 Generated table #1251@1: 12077 keys, 2137806 bytes
-2023/10/24-18:05:59.877 3be4 Generated table #1252@1: 3251 keys, 2123134 bytes
-2023/10/24-18:05:59.945 3be4 Generated table #1253@1: 101239 keys, 2251571 bytes
-2023/10/24-18:05:59.949 3be4 Generated table #1254@1: 1417 keys, 30684 bytes
-2023/10/24-18:05:59.949 3be4 Compacted 1@1 + 10@2 files => 22025622 bytes
-2023/10/24-18:05:59.950 3be4 compacted to: files[ 0 1 19 0 0 0 0 ]
-2023/10/24-18:05:59.950 3be4 Delete type=2 #1227
-2023/10/24-18:05:59.950 3be4 Delete type=2 #1228
-2023/10/24-18:05:59.950 3be4 Delete type=2 #1229
-2023/10/24-18:05:59.950 3be4 Delete type=2 #1230
-2023/10/24-18:05:59.950 3be4 Delete type=2 #1231
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1232
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1233
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1234
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1235
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1236
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1237
-2023/10/24-18:05:59.951 3be4 Delete type=2 #1242
-2023/10/24-18:06:15.056 3be4 Compacting 1@1 + 5@2 files
-2023/10/24-18:06:15.100 3be4 Generated table #1255@1: 104697 keys, 2256148 bytes
-2023/10/24-18:06:15.144 3be4 Generated table #1256@1: 104182 keys, 2254610 bytes
-2023/10/24-18:06:15.192 3be4 Generated table #1257@1: 104445 keys, 2256928 bytes
-2023/10/24-18:06:15.236 3be4 Generated table #1258@1: 104122 keys, 2256747 bytes
-2023/10/24-18:06:15.274 3be4 Generated table #1259@1: 94168 keys, 2035189 bytes
-2023/10/24-18:06:15.274 3be4 Compacted 1@1 + 5@2 files => 11059622 bytes
-2023/10/24-18:06:15.275 3be4 compacted to: files[ 0 0 19 0 0 0 0 ]
-2023/10/24-18:06:15.275 3be4 Delete type=2 #1218
-2023/10/24-18:06:15.275 3be4 Delete type=2 #1219
-2023/10/24-18:06:15.275 3be4 Delete type=2 #1220
-2023/10/24-18:06:15.275 3be4 Delete type=2 #1221
-2023/10/24-18:06:15.275 3be4 Delete type=2 #1222
-2023/10/24-18:06:15.275 3be4 Delete type=2 #1243
+2023/10/25-00:16:12.549 150c Reusing MANIFEST C:\Users\vitin\OneDrive\Documentos\Study\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/10/25-00:16:12.550 150c Recovering log #348
+2023/10/25-00:16:12.572 150c Reusing old log C:\Users\vitin\OneDrive\Documentos\Study\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000348.log 
+2023/10/25-00:16:12.577 150c Delete type=2 #337
+2023/10/25-00:16:12.577 150c Delete type=2 #338
+2023/10/25-00:16:12.577 150c Delete type=2 #339
+2023/10/25-00:16:12.577 150c Delete type=2 #340
+2023/10/25-00:16:12.577 150c Delete type=2 #341
+2023/10/25-00:16:12.577 150c Delete type=2 #342
+2023/10/25-00:16:12.577 150c Delete type=2 #343
+2023/10/25-00:16:12.577 150c Delete type=2 #344
+2023/10/25-00:16:12.577 150c Delete type=2 #345
+2023/10/25-00:16:12.577 150c Delete type=2 #346
+2023/10/25-00:16:12.577 150c Delete type=2 #350

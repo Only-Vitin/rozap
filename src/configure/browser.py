@@ -29,10 +29,12 @@ class ConfigureBrowser():
     
     def open_empty_window(self):
         self.browser.execute_script("window.open()")
+        self.browser.execute_script("window.open()")
     
     def open_windows(self):
         self.open_empty_window()
         self.open_whatsapp_window()
+        self.browser.switch_to.window(self.browser.window_handles[2])
         self.browser.switch_to.window(self.browser.window_handles[1])
         self.browser.switch_to.window(self.browser.window_handles[0])
         

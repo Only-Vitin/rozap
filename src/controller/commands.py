@@ -1,4 +1,4 @@
-from service import Stop, Help, Phrases, Translate, Lyrics, Dict
+from service import Stop, Help, Phrases, Translate, Lyrics, Dict, Suggest
 from utils import send_message
 
 
@@ -31,6 +31,10 @@ def verify_commands(browser, text, last_author):
         case '/dict':
             op_dict = Dict(browser, text)
             op_dict.show_word_meaning()
+
+        case '/suggest':
+            op_suggest = Suggest(browser, text)
+            op_suggest.open_movie()
 
     for i in range(len(text)):
         text[i] = text[i].lower()

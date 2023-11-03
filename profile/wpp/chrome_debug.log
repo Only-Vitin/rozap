@@ -1,9 +1,5 @@
-[8412:3200:1027/163051.391:WARNING:chrome_main_delegate.cc(613)] This is Chrome version 118.0.5993.90 (not a warning)
-[8412:3200:1027/163051.441:INFO:policy_logger.cc(142)] :components\enterprise\browser\controller\chrome_browser_cloud_management_controller.cc(168) Starting CBCM Controller Initialization
-[8412:3200:1027/163051.441:INFO:policy_logger.cc(142)] :components\enterprise\browser\controller\chrome_browser_cloud_management_controller.cc(196) No machine level policy manager exists.
-[8412:3200:1027/163052.154:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
-[8412:3200:1027/163201.920:WARNING:CONSOLE(1)] "Fallback triggered https://web.whatsapp.com/WAWebWorker.433116e85b8d5c7a6815.worker.js.map [object Object]", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
-[8412:3200:1027/163901.391:WARNING:CONSOLE(1)] "Fallback triggered https://web.whatsapp.com/WAWebWorker.433116e85b8d5c7a6815.worker.js.map [object Object]", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
-[8412:3200:1027/164110.080:INFO:CONSOLE(0)] "Error with Feature-Policy header: Unrecognized feature: 'speaker'.", source:  (0)
-[8412:3200:1027/164110.930:INFO:CONSOLE(10)] "The following functions are deprecated: googletag.pubads().setTagForChildDirectedTreatment(), googletag.pubads().clearTagForChildDirectedTreatment(), googletag.pubads().setRequestNonPersonalizedAds(), and googletag.pubads().setTagForUnderAgeOfConsent(). Please use googletag.pubads().setPrivacySettings() instead.", source: https://pagead2.googlesyndication.com/pagead/managed/js/gpt/m202310250101/pubads_impl.js?cb=31079181 (10)
-[8412:3200:1027/164234.212:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
+[14244:12704:1103/180042.570:WARNING:chrome_main_delegate.cc(660)] This is Chrome version 119.0.6045.105 (not a warning)
+[14244:12704:1103/180042.618:INFO:policy_logger.cc(145)] :components\enterprise\browser\controller\chrome_browser_cloud_management_controller.cc(168) Starting CBCM Controller Initialization
+[14244:12704:1103/180042.618:INFO:policy_logger.cc(145)] :components\enterprise\browser\controller\chrome_browser_cloud_management_controller.cc(196) No machine level policy manager exists.
+[14244:12704:1103/180043.270:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
+[14244:12704:1103/180056.882:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

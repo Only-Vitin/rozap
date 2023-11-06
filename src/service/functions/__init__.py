@@ -5,3 +5,4 @@ from .phrase import *
 from .stop import *
 from .translate import *
 from .suggest import *
+from .help_suggest import *

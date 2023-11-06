@@ -1,13 +1,16 @@
 import requests
+from unidecode import unidecode
 from time import sleep
 from random import randint
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from utils import send_message
+from storage_files import streamings, genres
 
 
 class Suggest():
@@ -15,38 +18,70 @@ class Suggest():
     def __init__(self, browser, text):
         self.browser = browser
         self.text = text
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
 
-    def get_random_name_href(self, type, plataform):
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
-        page = requests.get(f'https://www.filmelier.com/br/{type}/{plataform}', headers=headers)
+    def get_random_href(self, url):
+        page = requests.get(url, headers=self.headers)
         soup = BeautifulSoup(page.text, 'html.parser')
 
-        atributes = {'class':'title--small'}
+        atributes = {'class':'title-list-grid__item--link'}
         movies = soup.find_all('a', attrs=atributes)
         nmr = randint(0, len(movies))
 
-        movie = movies[nmr].get_text()
-        movie_name = str(movie).strip()
+        random_a = movies[nmr]
+        href = str(random_a['href'])
+        href = f"https://www.justwatch.com{href}"
 
-        target_a = soup.find(lambda tag: tag.name == 'a' and tag.get_text(strip=True) == movie_name)
-        href = str(target_a['href'])
-
-        return movie_name, href
+        print(href)
+        return href
           
-    def get_image_url(self):
-        _, href = self.get_random_name_href('acao', 'netflix')
-        
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
-        page = requests.get(href, headers=headers)
+    def get_image_src(self, href):   
+        page = requests.get(href, headers=self.headers)
         soup = BeautifulSoup(page.text, 'html.parser')
 
-        img_tag = soup.find('img', class_='film__cartaz__img center-block img-responsive lazy-inline-image')
+        picture = soup.find('picture', class_='picture-comp title-poster__image')
+        atributes = {'type':'image/webp'}
+        img_tag = picture.find('source', attrs=atributes)
 
-        src = str(img_tag['data-src'])
+        src = str(img_tag['data-srcset'])
         return src
+    
+    def get_description(self, href):
+        page = requests.get(href, headers=self.headers)
+        soup = BeautifulSoup(page.text, 'html.parser')
 
-    def copy_paste_image(self):
-        src = self.get_image_url()
+        #name and date
+        atributes = {'class':'title-block'}
+        title = soup.find('div', attrs=atributes)
+        name = title.find('h1').get_text()
+        date = title.find('span').get_text()
+
+        #streamings
+        atributes = {'class':'buybox-row stream'}
+        streamings = soup.find('div', attrs=atributes)
+
+        atributes = {'class':'offer__icon'}
+        streaming_img = streamings.find('img', attrs=atributes)
+        streaming_name = str(streaming_img['alt'])
+
+        #sinopse
+        try:
+            atributes = {'class':'article-block'}
+            article = soup.find('article', attrs=atributes)
+
+            atributes = {'dir':'ltr'}
+            sinopse = article.find('p', attrs=atributes).get_text()
+        except AttributeError:
+            atributes = {'class':'text-wrap-pre-line mt-0'}
+            sinopse = soup.find('p', attrs=atributes).get_text()
+
+        if len(sinopse) > 250:
+            sinopse = f"{sinopse[:250]}..."
+
+        description = f"Nome: *{name.strip()}* - {date.strip()}\n\nDisponível no(a): {streaming_name.strip()}\n\nSinopse: \n{sinopse}\n\nFonte: {href}"
+        return description
+
+    def copy_paste_image(self, src, message):
         self.browser.switch_to.window(self.browser.window_handles[2])
         self.browser.get(src)
         
@@ -72,7 +107,6 @@ class Suggest():
         text_box_on_img = self.browser.find_element(By.CSS_SELECTOR, "div[class*='g0rxnol2 thghmljt p357zi0d rjo8vgbg ggj6brxn f8m0rgwh gfz4du6o r7fjleex bs7a17vp ov67bkzj'] p[class*='copyable-text']")
         text_box_on_img.click()
     
-        message = 'Teste'
         lines = message.split("\n")
         for line in lines:
             text_box_on_img.send_keys(line)
@@ -81,8 +115,28 @@ class Suggest():
         send_button = self.browser.find_element(By.CSS_SELECTOR, "div[class*='g0rxnol2 thghmljt p357zi0d rjo8vgbg ggj6brxn f8m0rgwh gfz4du6o r7fjleex bs7a17vp ov67bkzj'] div[aria-label='Enviar']")
         send_button.click()
         sleep(3)
-    
-    def get_description(self):
-        ...
 
-    
+    def suggest(self):
+        url = "https://www.justwatch.com/br"
+        text = self.text
+        text.pop(0)
+        for par in text:
+            par = unidecode(par.lower().strip())
+            if par in streamings:
+                url = f"{url}/provedor/{par}"
+
+            elif par in ['filmes', 'series']:
+                url = f"{url}/{par}"
+
+            elif par in genres:
+                genre_code = genres[par]
+                url = f"{url}?genres={genre_code}"
+
+            else:
+                send_message(self.browser, f"Erro no parametro: {par}")
+                return 0
+        href = self.get_random_href(url)
+        src = self.get_image_src(href)
+        message = self.get_description(href)
+        self.copy_paste_image(src, message)
+        

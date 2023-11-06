@@ -1,4 +1,4 @@
-from service import Stop, Help, Phrases, Translate, Lyrics, Dict, Suggest
+from service import Stop, Help, Phrases, Translate, Lyrics, Dict, Suggest, HelpSuggest
 from utils import send_message
 
 
@@ -34,7 +34,11 @@ def verify_commands(browser, text, last_author):
 
         case '/suggest':
             op_suggest = Suggest(browser, text)
-            op_suggest.copy_paste_image()
+            op_suggest.suggest()
+
+        case '/hsuggest':
+            op_help_suggest = HelpSuggest(browser)
+            op_help_suggest.show_help_suggest()
 
     for i in range(len(text)):
         text[i] = text[i].lower()

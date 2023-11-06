@@ -6,12 +6,14 @@ class ChatService():
 
     def __init__(self, browser):
         self.browser = browser
+        self.chats = self.browser.find_elements(By.CSS_SELECTOR, "div[class='lhggkp7q ln8gz9je rx9719la']")
 
-    def open_chat_on_archived(self, name_chat):
+    def open_chat_on_archived(self):
         archived = self.browser.find_element(By.XPATH, '//div[text()="Arquivadas"]')
         archived.click()
         sleep(1)
 
-        chat = self.browser.find_element(By.CSS_SELECTOR, f"span[title='{name_chat}']")
+    def click_on_chats(self, index):
+        chat = self.chats[index]
         chat.click()
-        sleep(2)
+        sleep(0.5)

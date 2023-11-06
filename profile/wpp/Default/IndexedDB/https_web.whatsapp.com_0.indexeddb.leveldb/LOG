@@ -1,3 +1,49 @@
-2023/11/03-18:00:43.110 3284 Reusing MANIFEST C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/11/03-18:00:43.111 3284 Recovering log #545
-2023/11/03-18:00:43.134 3284 Reusing old log C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000545.log 
+2023/11/03-23:07:17.195 6d0 Reusing MANIFEST C:\Users\vitin\OneDrive\Documentos\Study\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/11/03-23:07:17.196 6d0 Recovering log #667
+2023/11/03-23:07:17.204 6d0 Reusing old log C:\Users\vitin\OneDrive\Documentos\Study\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000667.log 
+2023/11/03-23:07:58.376 6d0 Level-0 table #684: started
+2023/11/03-23:07:58.397 6d0 Level-0 table #684: 1377982 bytes OK
+2023/11/03-23:07:58.399 6d0 Delete type=0 #667
+2023/11/03-23:07:58.788 6d0 Compacting 1@0 + 1@1 files
+2023/11/03-23:07:58.814 6d0 Generated table #685@0: 10962 keys, 261238 bytes
+2023/11/03-23:07:58.817 6d0 Generated table #686@0: 346 keys, 6229 bytes
+2023/11/03-23:07:58.817 6d0 Compacted 1@0 + 1@1 files => 267467 bytes
+2023/11/03-23:07:58.817 6d0 compacted to: files[ 0 2 15 0 0 0 0 ]
+2023/11/03-23:07:58.818 6d0 Delete type=2 #670
+2023/11/03-23:07:58.818 6d0 Delete type=2 #684
+2023/11/03-23:08:11.788 3244 Compacting 1@1 + 10@2 files
+2023/11/03-23:08:11.843 3244 Generated table #687@1: 85554 keys, 2235565 bytes
+2023/11/03-23:08:11.883 3244 Generated table #688@1: 46588 keys, 2424318 bytes
+2023/11/03-23:08:11.906 3244 Generated table #689@1: 2881 keys, 2163731 bytes
+2023/11/03-23:08:11.927 3244 Generated table #690@1: 2966 keys, 2167709 bytes
+2023/11/03-23:08:11.947 3244 Generated table #691@1: 2811 keys, 2166755 bytes
+2023/11/03-23:08:11.971 3244 Generated table #692@1: 8409 keys, 2169788 bytes
+2023/11/03-23:08:12.015 3244 Generated table #693@1: 24983 keys, 2273080 bytes
+2023/11/03-23:08:12.060 3244 Generated table #694@1: 25909 keys, 2258423 bytes
+2023/11/03-23:08:12.080 3244 Generated table #695@1: 8190 keys, 2127154 bytes
+2023/11/03-23:08:12.132 3244 Generated table #696@1: 97687 keys, 2247760 bytes
+2023/11/03-23:08:12.135 3244 Generated table #697@1: 3569 keys, 80828 bytes
+2023/11/03-23:08:12.135 3244 Compacted 1@1 + 10@2 files => 22315111 bytes
+2023/11/03-23:08:12.135 3244 compacted to: files[ 0 1 16 0 0 0 0 ]
+2023/11/03-23:08:12.135 3244 Delete type=2 #671
+2023/11/03-23:08:12.136 3244 Delete type=2 #672
+2023/11/03-23:08:12.136 3244 Delete type=2 #673
+2023/11/03-23:08:12.136 3244 Delete type=2 #674
+2023/11/03-23:08:12.136 3244 Delete type=2 #675
+2023/11/03-23:08:12.136 3244 Delete type=2 #676
+2023/11/03-23:08:12.136 3244 Delete type=2 #677
+2023/11/03-23:08:12.136 3244 Delete type=2 #678
+2023/11/03-23:08:12.136 3244 Delete type=2 #679
+2023/11/03-23:08:12.136 3244 Delete type=2 #680
+2023/11/03-23:08:12.136 3244 Delete type=2 #685
+2023/11/03-23:13:10.719 6d0 Compacting 1@1 + 5@2 files
+2023/11/03-23:13:10.777 6d0 Generated table #698@1: 99319 keys, 2250991 bytes
+2023/11/03-23:13:10.846 6d0 Generated table #699@1: 95166 keys, 2204016 bytes
+2023/11/03-23:13:10.846 6d0 Compacted 1@1 + 5@2 files => 4455007 bytes
+2023/11/03-23:13:10.846 6d0 compacted to: files[ 0 0 13 0 0 0 0 ]
+2023/11/03-23:13:10.847 6d0 Delete type=2 #646
+2023/11/03-23:13:10.847 6d0 Delete type=2 #663
+2023/11/03-23:13:10.847 6d0 Delete type=2 #664
+2023/11/03-23:13:10.847 6d0 Delete type=2 #665
+2023/11/03-23:13:10.847 6d0 Delete type=2 #681
+2023/11/03-23:13:10.847 6d0 Delete type=2 #686

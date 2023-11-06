@@ -34,7 +34,7 @@ def verify_commands(browser, text, last_author):
 
         case '/suggest':
             op_suggest = Suggest(browser, text)
-            op_suggest.open_movie()
+            op_suggest.copy_paste_image()
 
     for i in range(len(text)):
         text[i] = text[i].lower()

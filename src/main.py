@@ -1,13 +1,10 @@
 from configure import ConfigureBrowser
 from controller import open_chat, read_messages, verify_commands, click_chats, return_chats
 
-
 def main():
     config_browser = ConfigureBrowser()
     config_browser.open_windows()
     browser = config_browser.browser
-
-    _ = input("Insira alguma tecla: ")
 
     open_chat(browser)
     while True:
@@ -15,7 +12,8 @@ def main():
         for index in range(len(chats)):
             click_chats(browser, index)
             text, last_author = read_messages(browser)
-            verify_commands(browser, text, last_author)
+            if text and last_author:
+                verify_commands(browser, text, last_author)
 
 if __name__ == '__main__':
     main()

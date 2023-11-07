@@ -60,9 +60,12 @@ class Suggest():
         atributes = {'class':'buybox-row stream'}
         streamings = soup.find('div', attrs=atributes)
 
-        atributes = {'class':'offer__icon'}
-        streaming_img = streamings.find('img', attrs=atributes)
-        streaming_name = str(streaming_img['alt'])
+        try:
+            atributes = {'class':'offer__icon'}
+            streaming_img = streamings.find('img', attrs=atributes)
+            streaming_name = str(streaming_img['alt'])
+        except AttributeError:
+            streaming_name = "Não está disponível para streaming"
 
         #sinopse
         try:
@@ -102,9 +105,9 @@ class Suggest():
         text_box.send_keys(Keys.CONTROL, 'v')
         
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, "div[class*='g0rxnol2 thghmljt p357zi0d rjo8vgbg ggj6brxn f8m0rgwh gfz4du6o r7fjleex bs7a17vp ov67bkzj'] p[class*='copyable-text']")))
+        wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, "div[class*='ppled2lx ln8gz9je'] p[class*='copyable-text']")))
 
-        text_box_on_img = self.browser.find_element(By.CSS_SELECTOR, "div[class*='g0rxnol2 thghmljt p357zi0d rjo8vgbg ggj6brxn f8m0rgwh gfz4du6o r7fjleex bs7a17vp ov67bkzj'] p[class*='copyable-text']")
+        text_box_on_img = self.browser.find_element(By.CSS_SELECTOR, "div[class*='ppled2lx ln8gz9je'] p[class*='copyable-text']")
         text_box_on_img.click()
     
         lines = message.split("\n")
@@ -112,7 +115,7 @@ class Suggest():
             text_box_on_img.send_keys(line)
             text_box_on_img.send_keys(Keys.SHIFT, Keys.ENTER)
         
-        send_button = self.browser.find_element(By.CSS_SELECTOR, "div[class*='g0rxnol2 thghmljt p357zi0d rjo8vgbg ggj6brxn f8m0rgwh gfz4du6o r7fjleex bs7a17vp ov67bkzj'] div[aria-label='Enviar']")
+        send_button = self.browser.find_element(By.CSS_SELECTOR, "div[class*='ppled2lx ln8gz9je'] div[aria-label='Enviar']")
         send_button.click()
         sleep(3)
 

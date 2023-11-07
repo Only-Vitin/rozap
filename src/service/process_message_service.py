@@ -10,7 +10,7 @@ class ProcessMessageService():
         self.browser = browser
 
     def get_last_data_by_class(self, message_class, message):
-        if message_class.startswith("message-in"):
+        if "message-in" in message_class:
             WebDriverWait(self.browser, 10).until(EC.visibility_of(message))
 
             last_message = message.find_element(By.CSS_SELECTOR, "span[class*='copyable-text']")
@@ -18,7 +18,7 @@ class ProcessMessageService():
             last_author_data = author_div.get_attribute("data-pre-plain-text")
             last_author = last_author_data.split()
             last_author = last_author[-1].replace(":", "")
-        elif message_class.startswith("message-out"):
+        elif "message-out" in message_class:
             WebDriverWait(self.browser, 10).until(EC.visibility_of(message))
             
             last_message = message.find_element(By.CSS_SELECTOR, ".selectable-text")
@@ -47,6 +47,6 @@ class ProcessMessageService():
             except StaleElementReferenceException:
                 continue
             except NoSuchElementException:
-                continue
+                return None, None
             except UnboundLocalError:
                 continue

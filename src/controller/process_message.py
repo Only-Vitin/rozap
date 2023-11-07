@@ -8,5 +8,5 @@ def read_messages(browser):
     print("Última mensagem enviada por:", last_author)
     print("Última mensagem:", text)
 
-    sleep(0.5)
+    sleep(0.1)
     return text, last_author

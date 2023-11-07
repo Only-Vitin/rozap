@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from unidecode import unidecode
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 from utils import send_message, send_message_without_enter
 

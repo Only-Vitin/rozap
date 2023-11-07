@@ -1,6 +1,7 @@
+from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, NoSuchWindowException
 from selenium.webdriver.support import expected_conditions as EC
 
 class ChatService():
@@ -16,9 +17,14 @@ class ChatService():
             try:
                 archived = self.browser.find_element(By.XPATH, '//div[text()="Arquivadas"]')
                 archived.click()
-                break
             except NoSuchElementException:
                 continue
+            else:
+                sleep(0.5)
+                first_chat = self.browser.find_element(
+                    By.XPATH, "//*[@id='app']/div/div/div[3]/div[1]/span/div/span/div/div/div/div[2]/div/div[1]")
+                first_chat.click()
+                break
 
     def click_on_chats(self, index):
         try:

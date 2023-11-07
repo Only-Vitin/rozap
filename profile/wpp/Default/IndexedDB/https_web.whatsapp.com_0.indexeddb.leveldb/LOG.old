@@ -1,3 +1,14 @@
-2023/11/07-14:12:14.760 74d4 Reusing MANIFEST C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/11/07-14:12:14.761 74d4 Recovering log #546
-2023/11/07-14:12:14.778 74d4 Reusing old log C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000546.log 
+2023/11/07-15:07:14.560 5f60 Reusing MANIFEST C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/11/07-15:07:14.561 5f60 Recovering log #634
+2023/11/07-15:07:14.563 5f60 Reusing old log C:\Users\Projeto Trainee\Documents\RoZAP\profile\wpp\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000634.log 
+2023/11/07-15:07:22.180 4d44 Compacting 1@1 + 4@2 files
+2023/11/07-15:07:22.232 4d44 Generated table #647@1: 103378 keys, 2255130 bytes
+2023/11/07-15:07:22.278 4d44 Generated table #648@1: 103454 keys, 2256369 bytes
+2023/11/07-15:07:22.285 4d44 Generated table #649@1: 11685 keys, 265436 bytes
+2023/11/07-15:07:22.285 4d44 Compacted 1@1 + 4@2 files => 4776935 bytes
+2023/11/07-15:07:22.287 4d44 compacted to: files[ 0 0 15 0 0 0 0 ]
+2023/11/07-15:07:22.287 4d44 Delete type=2 #597
+2023/11/07-15:07:22.287 4d44 Delete type=2 #598
+2023/11/07-15:07:22.287 4d44 Delete type=2 #599
+2023/11/07-15:07:22.287 4d44 Delete type=2 #615
+2023/11/07-15:07:22.287 4d44 Delete type=2 #637

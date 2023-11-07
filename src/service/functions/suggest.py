@@ -24,16 +24,19 @@ class Suggest():
         page = requests.get(url, headers=self.headers)
         soup = BeautifulSoup(page.text, 'html.parser')
 
-        atributes = {'class':'title-list-grid__item--link'}
-        movies = soup.find_all('a', attrs=atributes)
-        nmr = randint(0, len(movies))
+        while True:
+            try:
+                atributes = {'class':'title-list-grid__item--link'}
+                movies = soup.find_all('a', attrs=atributes)
+                nmr = randint(0, len(movies))
 
-        random_a = movies[nmr]
-        href = str(random_a['href'])
-        href = f"https://www.justwatch.com{href}"
+                random_a = movies[nmr]
+                href = str(random_a['href'])
+                href = f"https://www.justwatch.com{href}"
 
-        print(href)
-        return href
+                return href
+            except IndexError:
+                continue
           
     def get_image_src(self, href):   
         page = requests.get(href, headers=self.headers)
@@ -88,6 +91,7 @@ class Suggest():
         self.browser.switch_to.window(self.browser.window_handles[2])
         self.browser.get(src)
         
+        #copy image with ctrl c
         image = self.browser.find_element(By.XPATH, "//img[contains(@style, 'display')]")
         
         actions = ActionChains(self.browser)
@@ -99,11 +103,13 @@ class Suggest():
         actions.perform()
         
         self.browser.switch_to.window(self.browser.window_handles[0])
-    
+
+        #paste image with ctrl v
         text_box = self.browser.find_element(By.CSS_SELECTOR, 'div[title="Digite uma mensagem"]')
         text_box.click()
         text_box.send_keys(Keys.CONTROL, 'v')
         
+        #send a message on text box of the image
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, "div[class*='ppled2lx ln8gz9je'] p[class*='copyable-text']")))
 
@@ -115,7 +121,7 @@ class Suggest():
             text_box_on_img.send_keys(line)
             text_box_on_img.send_keys(Keys.SHIFT, Keys.ENTER)
         
-        send_button = self.browser.find_element(By.CSS_SELECTOR, "div[class*='ppled2lx ln8gz9je'] div[aria-label='Enviar']")
+        send_button = self.browser.find_element(By.XPATH, "//*[@id='app']/div/div/div[3]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]/div")
         send_button.click()
         sleep(3)
 

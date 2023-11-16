@@ -1,6 +1,5 @@
 import os
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,6 +17,8 @@ class ConfigureBrowser():
         dir_path = os.getcwd()
         profile = os.path.join(dir_path, "profile", "wpp")
         self.options.add_argument("--lang=pt")
+        self.options.add_argument('--headless')
+        self.options.add_argument('--no-sandbox')
         self.options.add_argument(r"user-data-dir={}".format(profile))
         
         browser = webdriver.Chrome(options=self.options, service=self.service)

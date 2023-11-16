@@ -16,9 +16,9 @@ class ConfigureBrowser():
     def configure_browser(self):
         dir_path = os.getcwd()
         profile = os.path.join(dir_path, "profile", "wpp")
-        self.options.add_argument("--lang=pt")
         self.options.add_argument('--headless')
         self.options.add_argument('--no-sandbox')
+        self.options.add_argument("--lang=pt")
         self.options.add_argument(r"user-data-dir={}".format(profile))
         
         browser = webdriver.Chrome(options=self.options, service=self.service)

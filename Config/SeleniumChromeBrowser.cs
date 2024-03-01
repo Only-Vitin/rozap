@@ -4,12 +4,12 @@ using Rozap.Aplication.Interfaces;
 using System.Drawing;
 
 namespace Rozap.Config
-{
+{ 
     public class SeleniumChromeBrowser : IBrowserConfig<IWebDriver>
     {
         public IWebDriver Configure()
         {
-            var profilePath = Path.Combine(Directory.GetCurrentDirectory(), "profile", "wpp");
+            var profilePath = Path.Combine(Directory.GetCurrentDirectory(), "Profile", "wpp");
 
             var options = new ChromeOptions();
             //options.AddArgument("--headless");

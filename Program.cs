@@ -1,32 +1,23 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Rozap.Aplication.Services;
+﻿using Rozap.Application.Service;
+using Rozap.Infrastructure.Gateway;
+using Rozap.Infrastructure.Selenium;
 
-namespace Rozap
+namespace Rozap;
+
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main(string[] args)
+        var seleniumClient = new SeleniumClient();
+        var clickGateway = new ClickGateway(seleniumClient);
+        var windowGateway = new WindowGateway(seleniumClient);
+        var startService = new StartService(windowGateway, clickGateway);
+        startService.Execute();
+
+        var openUnreadService = new OpenUnreadChatService(clickGateway);
+        while (true)
         {
-            var host = Startup.CreateHostBuilder(args).Build();
-
-            using (var serviceScope = host.Services.CreateScope())
-            {
-                var services = serviceScope.ServiceProvider;
-
-                var _windowService = services.GetRequiredService<WindowService>();
-                var _chatService = services.GetRequiredService<ChatService>();
-                _windowService.OpenByUrl("https://web.whatsapp.com/");
-                _windowService.OpenNewWindow();
-                _windowService.OpenNewWindow();
-                _windowService.ChangeWindow(0);
-                _chatService.OpenArchived();
-                while(true)
-                {
-                    _chatService.OpenUnreadChat();
-                }
-            }
+            openUnreadService.Execute();
         }
-
     }
 }
